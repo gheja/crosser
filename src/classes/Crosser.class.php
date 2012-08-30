@@ -1,23 +1,26 @@
-<?php
+<?php // 2
+	require_once(CROSSER_ROOT_DIR . "/classes/CrosserException.class.php");
+	require_once(CROSSER_ROOT_DIR . "/classes/CrosserLib.class.php");
+	
 	class Crosser
 	{
 		private $accounts;
 		private $routes;
 		
-		function SetAccounts($accounts)
+		private function SetAccounts($accounts)
 		{
 			$this->accounts = $accounts;
 		}
 		
-		function SetRoutes($routes)
+		private function SetRoutes($routes)
 		{
 			$this->routes = $routes;
 		}
 		
-		function LoadConfig($profile = "default")
+		public function LoadConfig($profile = "default")
 		{
 			$filename = "./config/config." . $profile . ".php";
-			if (!is_safe_filename($filename))
+			if (!CrosserLib::IsSafeFilename($filename))
 			{
 				throw new CrosserException("Invalid config: wrong filename.");
 			}
@@ -33,7 +36,7 @@
 			$this->SetRoutes($routes);
 		}
 		
-		function DoTheWork()
+		public function DoTheWork()
 		{
 			
 		}
